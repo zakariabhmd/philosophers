@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:04:25 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/03 23:27:52 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:42:47 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	alloc_philo(t_damage *data, t_savage **philo, char **av)
 	if (!philoso)
 	{
 		free (data->fork);
-		data->fork = '\0';
+		data->fork = NULL;
 		return (1);
 	}
 	*philo = philoso;
