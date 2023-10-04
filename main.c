@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:08:29 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 17:29:44 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:29:08 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	routine2(t_savage *ar, int first_time)
 void	*routine(void *das)
 {
 	t_savage	*ar;
-	int	first_time;
+	int			first_time;
 
 	ar = (t_savage *)das;
 	first_time = 1;
@@ -64,7 +64,7 @@ void	*routine(void *das)
 
 t_savage	*init_philo2(t_damage *strick)
 {
-	int	i;
+	int			i;
 	t_savage	*ar;
 
 	ar = malloc(sizeof(t_savage) * strick->num_philo);
@@ -86,17 +86,17 @@ t_savage	*init_philo2(t_damage *strick)
 
 void	init_philo(t_damage *strick, int ac)
 {
-	int	i;
+	int			i;
 	t_savage	*ar;
 
 	ar = init_philo2(strick);
 	while (1)
 	{
 		i = -1;
-		while(++i < strick->num_philo)
+		while (++i < strick->num_philo)
 		{
 			pthread_mutex_lock(&(ar[i].arg->data_race));
-			if(strick->philo_count == 0 && ac == 6)
+			if (strick->philo_count == 0 && ac == 6)
 			{
 				pthread_mutex_unlock(&(ar[i].arg->data_race));
 				join_philo(ar, strick);
@@ -113,11 +113,11 @@ void	init_philo(t_damage *strick, int ac)
 	mutex_des(ar, strick);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_damage	*strick;
 
-	if	(check_args(av) == 0 && (ac == 5 || ac == 6))
+	if (check_args(av) == 0 && (ac == 5 || ac == 6))
 	{
 		strick = malloc(sizeof(t_damage));
 		if (alloc_philo(av, strick) == 1)
@@ -129,8 +129,8 @@ int main(int ac, char **av)
 		if (ac == 6)
 		{
 			strick->num_to_eat = ft_atoi(av[5]);
-			if(strick->num_to_eat == 0)
-				return(0);
+			if (strick->num_to_eat == 0)
+				return (0);
 		}
 		strick->fork = malloc(sizeof(pthread_mutex_t) * strick->num_philo);
 		init_forks(strick);
@@ -139,5 +139,5 @@ int main(int ac, char **av)
 		init_philo(strick, ac);
 	}
 	else
-		return(0);
+		return (0);
 }

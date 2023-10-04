@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:50:44 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 17:28:21 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:29:32 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,46 +44,25 @@ int	int_max(char *ag)
 	long	number;
 
 	number = ft_atoi(ag);
-	if(number > 2147483647 || number <= 0)
+	if (number > 2147483647 || number <= 0)
 		return (1);
 	return (0);
 }
 
-int	inv_num(char *ag)
+int	check_args(char **str)
 {
 	int	i;
-	int	flg;
-
-	i = 0;
-	flg = 0;
-	while(ag[i])
-	{
-		if (ag[i] == '+' || ag[i] == '-')
-		{
-			if (i > 0 || flg == 1)
-				return(1);
-			flg = 1;
-		}
-		else if (!(ag[i] >= '0' && ag[i] <= '9'))
-			return (1);
-		i++;
-	}
-	if (flg == 1 && i == 1)
-		return (1);
-	return (0);
-}
-
-int	check_args(char **av)
-{
-	int	i;
+	int	j;
 
 	i = 1;
-	while(av[1])
+	while (str[i])
 	{
-		if (inv_num(av[i]))
+		j = 0;
+		while (str[i][j])
 		{
-			printf("khataa");
-			return (1);
+			if (!(str[i][j] >= '0' && str[i][j] <= '9'))
+				return (1);
+			j++;
 		}
 		i++;
 	}

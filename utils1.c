@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:39:29 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 16:57:48 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:29:48 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	join_philo(t_savage *ar, t_damage *strick)
 	int	i;
 
 	i = 0;
-	while(i < strick->num_philo)
+	while (i < strick->num_philo)
 	{
 		pthread_join(ar[i].philo, NULL);
 		i++;

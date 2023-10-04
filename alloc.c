@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:04:25 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 16:04:39 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:30:22 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	alloc_philo(char **av, t_damage *strick)
 	strick->time_to_eat = ft_atoi(av[3]);
 	strick->time_to_die = ft_atoi(av[4]);
 	i = 1;
-	while(i <= 4)
+	while (i <= 4)
 	{
-		if(int_max(av[1]) == 1)
+		if (int_max(av[1]) == 1)
 			return (1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 void	init_forks(t_damage *strick)
@@ -43,7 +43,7 @@ void	init_forks(t_damage *strick)
 	int	i;
 
 	i = 0;
-	while(i < strick->num_philo)
+	while (i < strick->num_philo)
 	{
 		pthread_mutex_init(&strick->fork[i], NULL);
 		i++;
