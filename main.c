@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:08:29 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 18:29:08 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:41:34 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_savage	*init_philo2(t_damage *strick)
 		ar[i].id = i + 1;
 		ar[i].arg = strick;
 		ar[i].right_fork = i;
-		ar[i].left_fork = (i + 1) & ar->arg->num_philo;
+		ar[i].left_fork = (i + 1) % ar->arg->num_philo;
 		ar[i].last_meal = time_s();
 		ar[i].meals = ar->arg->num_to_eat;
 		pthread_create(&ar[i].philo, NULL, routine, &ar[i]);

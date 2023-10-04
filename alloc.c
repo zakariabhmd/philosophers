@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:04:25 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/04 18:30:22 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:37:37 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	alloc_philo(char **av, t_damage *strick)
 	strick->num_philo = ft_atoi(av[1]);
 	strick->time_to_die = ft_atoi(av[2]);
 	strick->time_to_eat = ft_atoi(av[3]);
-	strick->time_to_die = ft_atoi(av[4]);
+	strick->time_to_sleep = ft_atoi(av[4]);
 	i = 1;
 	while (i <= 4)
 	{
-		if (int_max(av[1]) == 1)
+		if (int_max(av[i]) == 1)
 			return (1);
 		i++;
 	}
