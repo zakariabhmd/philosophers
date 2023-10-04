@@ -6,34 +6,48 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:04:25 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/03 23:42:47 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:04:39 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	alloc_philo(t_damage *data, t_savage **philo, char **av)
+long int	time_s(void)
 {
-	t_savage	*philoso;
+	struct timeval	time;
 
-	data->number_of_philo = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
-	data->time_to_eat = ft_atoi(av[3]);
-	data->time_to_die = ft_atoi(av[4]);
-	if(av[5])
-		data->number_of_time = ft_atoi(av[5]);
-	else
-		data->number_of_time = -1;
-	data->fork = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
-	if (!data->fork)
-		return (1);
-	philoso = malloc(sizeof(t_savage) * data->number_of_philo);
-	if (!philoso)
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+int	alloc_philo(char **av, t_damage *strick)
+{
+	int	i;
+
+	strick->num_philo = ft_atoi(av[1]);
+	strick->time_to_die = ft_atoi(av[2]);
+	strick->time_to_eat = ft_atoi(av[3]);
+	strick->time_to_die = ft_atoi(av[4]);
+	i = 1;
+	while(i <= 4)
 	{
-		free (data->fork);
-		data->fork = NULL;
-		return (1);
+		if(int_max(av[1]) == 1)
+			return (1);
+		i++;
 	}
-	*philo = philoso;
 	return(0);
+}
+
+void	init_forks(t_damage *strick)
+{
+	int	i;
+
+	i = 0;
+	while(i < strick->num_philo)
+	{
+		pthread_mutex_init(&strick->fork[i], NULL);
+		i++;
+	}
+	pthread_mutex_init(&strick->print_mutex, NULL);
+	pthread_mutex_init(&strick->data_race, NULL);
 }

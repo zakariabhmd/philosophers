@@ -6,7 +6,7 @@
 /*   By: zbabahmi <zbabahmi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:50:44 by zbabahmi          #+#    #+#             */
-/*   Updated: 2023/10/03 23:02:06 by zbabahmi         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:28:21 by zbabahmi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_args(char **av)
 	i = 1;
 	while(av[1])
 	{
-		if (int_max(av[1]) || inv_num(av[i]))
+		if (inv_num(av[i]))
 		{
 			printf("khataa");
 			return (1);
@@ -88,4 +88,18 @@ int	check_args(char **av)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_print(char *str, t_savage *ar)
+{
+	pthread_mutex_lock(&(ar->arg->data_race));
+	if (ar->arg->flag == 0)
+	{
+		pthread_mutex_lock(&ar->arg->print_mutex);
+		printf("%ld %d %s\n", time_s() - ar->arg->time_start, ar->id, str);
+		pthread_mutex_unlock(&ar->arg->print_mutex);
+		pthread_mutex_unlock(&(ar->arg->data_race));
+	}
+	else
+		pthread_mutex_unlock(&(ar->arg->data_race));
 }
